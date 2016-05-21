@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Splitter and Style Definer</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: serif;
+                font-size: 16px;
+            }
+            #text {
+                width: 100%;
+                height: 20em;
+            }
+            #result, form {
+                position: absolute;
+                width: 48%;
+                top: 0;
+                padding: 1em;
+            }
+            #result {
+                right: 0;
+            }
+            .style, .form-header {
+                margin-bottom: 1em;
+            }
+            button {
+                padding: .5em 1em;
+                float: right;
+                border: 1px solid black;
+                background: white;
+            }
+        </style>
+    </head>
+    <body>
+        <form action='javascript: void 0'>
+            <div class='form-header'>Input your German text</div>
+            <div>
+                <textarea id='text'></textarea>
+            </div>
+            <div>
+                <button id='submit'>split it</button>
+            </div>
+        </form>
+        <div id='result'></div>
+
+        <script src='zepto.min.js'></script>
+        <script>
+            var api = 'http://localhost';
+            var submitBtn = $('#submit');
+            var resultView = $('#result');
+            var textInput = $('#text');
+
+            function displayResult(data) {
+                resultView.empty();
+                resultView.append($('<div>').addClass('style').text('STYLE: ' + data.style));
+                data.splits.forEach(function (split) {
+                    var line = $('<div>').addClass('split')
+                        .append($('<span>' + split.full + '</span>'))
+                        .append($('<span>').text(' = '))
+                        .append($('<span>' + split.prefix + '</span>'))
+                        .append($('<span>').text(' + '))
+                        .append($('<span>' + split.suffix + '</span>'));
+                    resultView.append(line);
+                });
+            }
+
+            $('form').submit(() => {
+                resultView.empty();
+                $.post(api, textInput.val(), displayResult);
+            });
+        </script>
+    </body>
+</html>
