@@ -79,11 +79,6 @@ def process(text, pref_tree, suff_tree, comp_list, all_words):
 
             if len(best_pref) < len(word_p):
 
-                if best_suff[0] == u's' and best_pref[-1] == u'g':
-                    best_suff = best_suff[1:]
-                else:
-                    if (best_suff[0] == u'n' or best_suff[0] == u'r') and best_pref[-1] == u'e':
-                        best_suff = best_suff[1:]
                 if not best_suff in all_words:
                     best_pref = word_p
                     best_suff = u''
