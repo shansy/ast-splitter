@@ -17,13 +17,6 @@ suff_tree = treeFromJSON('suff_tree_long')
 pref_tree = treeFromJSON('pref_tree_long')
 all_words = loadPkl('/all_words_suff_wiki_7_10.pkl')
 
-path_comp = os.path.dirname(os.path.abspath(__file__)) + '/comps1.txt';
-lines_comp  = open(path_comp, 'r').readlines()
-comp_list = []
-for line in lines_comp:
-    line1 = line.decode('utf-8').strip()
-    comp_list.append(line1.lower())
-
 class S(BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
@@ -41,7 +34,7 @@ class S(BaseHTTPRequestHandler):
         from try_text_json import process
 
         text = self._getPostBody()
-        res = process(text, pref_tree, suff_tree, comp_list, all_words)
+        res = process(text, pref_tree, suff_tree, all_words)
 
         self._set_headers()
         self.wfile.write(json.dumps(res, separators=(',', ':')))

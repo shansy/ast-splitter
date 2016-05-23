@@ -9,7 +9,7 @@ import math
 import re
 
 word_re = re.compile(u'([a-z0-9\\-öβüä]*)', re.I)
-def process(text, pref_tree, suff_tree, comp_list, all_words):
+def process(text, pref_tree, suff_tree, all_words):
     splits = []
     tokens = word_re.findall(text.lower())
     count_splitted = 0.0
