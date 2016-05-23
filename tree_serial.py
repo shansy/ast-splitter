@@ -8,15 +8,17 @@ def toPlain(node):
     }
 
 def toNode(dict):
+    
     node = Node(dict['char'])
     node.freq = dict['freq']
     for child in dict['children']:
         childNode = toNode(child)
         childNode.parent = node
-        node.children.append(childNode)
+        node.children.append(childNode)       
     return node
 
 def build(data):
+    
     tree = Tree(suffix)
     tree.root = toNode(data)
     return tree

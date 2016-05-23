@@ -73,7 +73,6 @@ class Tree():
                 cN.children.append(nN)
                 cN = nN
 
-
     def myprint(self):
         print_tree(self.root)
 
@@ -89,9 +88,6 @@ def find_paths2(leaf,  path, paths, thrsh1 = 10, thrsh2 = 15000, len_thrsh = 4):
                 paths.append(path[::-1])
     else:
         find_paths2(leaf.parent, path, paths)
-
-
-
 
 def subtree(t1, t2, new_tree, node1, node2, cN):
     '''
