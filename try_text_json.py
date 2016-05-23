@@ -60,6 +60,7 @@ def process(text, pref_tree, suff_tree, all_words):
 
                         if freq_p > previous_p or freq_s < previous_s:
                             continue
+                        
                         else:
                             previous_p = freq_p
                             previous_s = freq_s
